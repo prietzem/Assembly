@@ -1,0 +1,3 @@
+nasm -f elf64 -o sample.o sample.asm
+c99 -O2 -c -o sample_wrapper.o sample_wrapper.c
+c99 -o sample sample_wrapper.o sample.o
