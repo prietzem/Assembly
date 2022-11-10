@@ -8,7 +8,7 @@ collatz:
 
     cmp rax , 10
     jl .if     ; jumps to .if if rax < 10
-    je .elseif ; jumps to .else if 
+    je .elseif ; jumps to .else if if rax == 10
     jmp .else  ; jumps to .else
     ret
 
@@ -18,6 +18,7 @@ collatz:
     add rax , rcx ; x += a
     add rax , rdx ; x += b
     add rax , rbx ; x += c
+    ; call F(rax) 
     ret
 
 .if:
