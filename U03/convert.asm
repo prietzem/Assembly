@@ -2,18 +2,20 @@ global strToInt
 
 strToInt:
     mov rax , 0     ;clears register
-    call .while
-    div rsi         ;divides by base because it got multiplied before too much
-    ret
+    cmp rsi , 1 ;check if base is less than 1
+    jl .error
+    cmp rsi , 36 ;check if base is greater than 36
+    jg .error
+
+    jmp .while
 
 .error:
     ret
 
-
 .get_char:
+    mul rsi
     add al , cl    ;adding cl to al
  
-    mul rsi
     
     add rdi , 1    ;going to the next char in string
 
@@ -29,10 +31,12 @@ strToInt:
     jmp .get_char
 
 .check_if_digit:
-    cmp cl , 48 ;checks if ascii-value ist between 48-57 (0-9)
+    cmp cl , 48  ;checks if ascii-value ist between 48-57 (0-9)
     jl .error
 
-    cmp cl , 57
+    mov rdx , rsi
+    add rdx , 47
+    cmp cl , dl  ;checks if character ascii-value is too high
     jg .error
     jmp .sub_digit
 
@@ -40,7 +44,9 @@ strToInt:
     cmp cl , 65 ;checks if ascii-value is between 65-90  (A-Z)
     jl .check_if_digit ;if its below 65 it could still be a digit
 
-    cmp cl , 90 
+    mov rdx , rsi
+    add rdx , 54
+    cmp cl , dl    ;checks if character ascii-value is too high
     jg .error
     jmp .sub_letter
 
@@ -55,5 +61,5 @@ strToInt:
 global intToStr
 
 intToStr:
-    mov rax , rdi 
+    mov rax , rdi
     ret
