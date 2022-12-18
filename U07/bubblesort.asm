@@ -1,9 +1,7 @@
     global sort
 
 sort:
-    mov rax ,0
     mov r10 , rdi ;r10 = i
-    sub rdi , 1
     jmp .first_loop 
 
 .first_loop:
