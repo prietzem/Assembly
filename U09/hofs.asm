@@ -9,12 +9,12 @@ sort:
     cmp r10 , 1 ;if i > 1
     mov r11 , 0 ;j=0
     sub r10 , 1 ;i--
-    jg .secound_loop
+    jg .secound_loop ;then
     ret
 
 .secound_loop:
-    cmp r11 , r10
-    jl .do
+    cmp r11 , r10 ;if j < i
+    jl .do ;then
     jmp .first_loop
 
 .do:

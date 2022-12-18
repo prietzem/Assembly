@@ -19,11 +19,8 @@ sort:
 .do:
     mov rax , r11
     imul rax , 8
-
-    
     mov rcx , [rsi+rax]
     cmp rcx , [rsi+rax+8] ;if A[i] > A[i+1]
-    
     jg .switch ;then
     add r11 , 1 ;j++
     jmp .secound_loop
