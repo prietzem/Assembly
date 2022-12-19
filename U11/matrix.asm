@@ -4,7 +4,6 @@
 asmRowAdd:
     mov rax , 0
     imul rsi , rdx ;m=m*n
-
     mov r10 , 0 ;i=0
     jmp .loop
 
