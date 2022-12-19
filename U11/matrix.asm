@@ -8,12 +8,12 @@ asmRowAdd:
     jmp .loop
 
 .loop:
-    cmp r10 , rsi ;i<m*n
-    jl .add_to_rax
+    cmp r10 , rsi ;if i<m*n
+    jl .add_to_rax ;then
     ret
 
 .add_to_rax:
-    add rax , [rdi+r10*8]
+    add rax , [rdi+r10*8] 
     add r10 , 1
     jmp .loop
 
