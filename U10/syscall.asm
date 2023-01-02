@@ -1,4 +1,8 @@
-    global start
+ 
+SECTION .text
+    global _start
 
-start:
-    ret
+_start:
+    ;mov rax , rdi
+    sys_exit()
+
