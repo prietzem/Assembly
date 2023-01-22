@@ -4,7 +4,7 @@ sort:
     mov rcx , rdi
     mov r10 , rsi ;r10 = i
     jmp .first_loop
-    
+
 .first_loop:
     cmp r10 , 1 ;if i > 1
     mov r11 , 0 ;j=0
