@@ -2,7 +2,7 @@
 
 section .bss
   buffer: resb 1024
-; everything after contains the actual code
+
 section .text
 
   global _start
@@ -13,16 +13,20 @@ section .text
 %define sys_write 1
 %define stout 1
 
-_start: ; ... global _start
+_start:
   mov rax, sys_read
   mov rdi , stdin
   mov rsi, buffer
   mov rdx, 1024
-  syscall
+  syscall                 ;einlesen
+
+  cmp rax , 1             ;warum auch immer es funktioniert mit 1 (wahrscheinlich wegen ENTER)
+  je .end
+
   mov rax , sys_write
   mov rdi , stout
   lea rsi , [rel buffer]
-  syscall
+  syscall                 ;schreiben
 
   jmp _start
 
