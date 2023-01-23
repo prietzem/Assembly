@@ -23,12 +23,24 @@ _start:
   cmp rax , 1             ;warum auch immer es funktioniert mit 1 (wahrscheinlich wegen ENTER)
   je .end
 
+  mov r9 , 0              ;nwritten
   mov rax , sys_write
   mov rdi , stout
   lea rsi , [rel buffer]
   syscall                 ;schreiben
+  add r9 , rax
 
   jmp _start
+
+.write:
+  mov rax , sys_write
+  mov rdi , stout
+  lea rsi , [rel buffer]
+  syscall                 ;schreiben
+  add r9 , rax
+
+  jmp _start
+
 
 .end:
   mov rax , sys_exit
